@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, Calendar, ArrowUpRight, ArrowDown, ShieldCheck, Trophy, Users, Terminal, Code2, Edit2, Check, Download } from 'lucide-react';
+import { Sparkles, Calendar, ArrowUpRight, ArrowDown, Trophy, Users, Edit2, Check, Download, ShieldCheck } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function Hero({ onOpenRegister, onOpenTicketModal }) {
@@ -14,7 +14,6 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
 
   const [passName, setPassName] = useState('PRANAV RAJ');
   const [isEditingName, setIsEditingName] = useState(false);
-  const [badgeTier, setBadgeTier] = useState('VIP HACKER');
 
   // 3D Card Tilt State
   const cardRef = useRef(null);
@@ -27,8 +26,8 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -12;
-    const rotateY = ((x - centerX) / centerX) * 12;
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
     setTilt({
       x: rotateX,
       y: rotateY,
@@ -69,54 +68,52 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
   const padZero = (n) => String(n).padStart(2, '0');
 
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
-      
-      {/* Top Protocol Telemetry Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-        <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-400 pb-3 border-b border-white/10">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span className="text-white font-semibold">MISSION STATUS: OPERATIONAL</span>
-            <span className="text-slate-600">|</span>
-            <span>GDG @ SOA ITER CHAPTER</span>
-          </div>
-          <div className="flex items-center gap-4 text-emerald-400">
-            <span>OCTOBER 16–18, 2026</span>
-            <span className="text-slate-600">|</span>
-            <span className="text-cyan-400">100% FREE ADMISSION</span>
-          </div>
-        </div>
-      </div>
-
+    <section className="relative pt-36 sm:pt-44 pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Main Split Hero Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
+        {/* Main Balanced Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center mb-16">
           
-          {/* Left Column: Bold Editorial Typography */}
+          {/* Left Column: Clean Typography & Information */}
           <div className="lg:col-span-7 text-left">
             
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              <span>ANNUAL FLAGSHIP DEVELOPER SUMMIT</span>
+            {/* GDG Event Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium mb-6 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>GDG @ SOA ITER Chapter • October 16–18, 2026</span>
             </div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black font-syne tracking-tight text-white leading-none mb-6">
-              THE NEXT<br />
+            {/* Main Title - Clean, bold and never overflowing */}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-syne tracking-tight text-white leading-[1.08] mb-6">
+              Tekno Krraft <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                FRONTIER.
+                2026 Edition
               </span>
             </h1>
 
-            <p className="text-base sm:text-xl text-slate-300 font-sans max-w-xl leading-relaxed mb-8">
-              Welcome to <strong className="text-white">Tekno Krraft 2026</strong>. 3 days of deep-dive multimodal AI, cloud-native scale, Web3 systems, and the marquee 24-hour hack sprint at Siksha 'O' Anusandhan.
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-slate-300 font-sans max-w-xl leading-relaxed mb-6">
+              A 3-Day Technical Odyssey celebrating <strong className="text-white">Multimodal AI</strong>, <strong className="text-emerald-400">Cloud Infrastructure</strong>, <strong className="text-cyan-400">Modern Web</strong>, and the marquee 24-hour hack sprint at Siksha 'O' Anusandhan.
             </p>
 
-            {/* CTAs */}
+            {/* Quick Feature Tags */}
+            <div className="flex flex-wrap items-center gap-2 mb-8 font-mono text-xs">
+              <span className="px-3 py-1 rounded-lg bg-slate-900 border border-white/10 text-slate-300">
+                ⚡ 1,500+ Builders
+              </span>
+              <span className="px-3 py-1 rounded-lg bg-slate-900 border border-amber-500/30 text-amber-300">
+                🏆 ₹1,50,000+ Prize Pool
+              </span>
+              <span className="px-3 py-1 rounded-lg bg-slate-900 border border-emerald-500/30 text-emerald-300">
+                🎟️ 100% Free Entry
+              </span>
+            </div>
+
+            {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 mb-8">
               <button
                 onClick={onOpenRegister}
-                className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 font-mono font-bold text-sm shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all flex items-center gap-2 transform hover:-translate-y-0.5"
+                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all flex items-center gap-2 transform hover:-translate-y-0.5"
               >
                 <span>CLAIM FREE ALL-ACCESS PASS</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -124,14 +121,14 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
 
               <a
                 href="#schedule"
-                className="px-7 py-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800/90 border border-white/15 text-slate-200 font-mono font-bold text-sm transition-all flex items-center gap-2"
+                className="px-6 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-white/15 text-slate-200 font-mono font-bold text-xs transition-all flex items-center gap-2"
               >
-                <span>EXPLORE AGENDA</span>
-                <ArrowDown className="w-4 h-4 text-slate-400" />
+                <span>EXPLORE SCHEDULE</span>
+                <ArrowDown className="w-3.5 h-3.5 text-slate-400" />
               </a>
             </div>
 
-            {/* Social proof attendees */}
+            {/* Attendee avatars strip */}
             <div className="flex items-center gap-3 text-xs font-mono text-slate-400">
               <div className="flex -space-x-2">
                 <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" className="w-7 h-7 rounded-full border-2 border-slate-900 object-cover" alt="User" />
@@ -146,7 +143,7 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
 
           </div>
 
-          {/* Right Column: Interactive 3D Tilt Holographic VIP Pass HUD */}
+          {/* Right Column: Holographic 3D Tilt VIP Badge */}
           <div className="lg:col-span-5 perspective-1000">
             <div
               ref={cardRef}
@@ -155,9 +152,9 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
               style={{
                 transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
                 transformStyle: 'preserve-3d',
-                transition: tilt.x === 0 ? 'transform 0.5s ease-out' : 'none'
+                transition: tilt.x === 0 ? 'transform 0.4s ease-out' : 'none'
               }}
-              className="glass-card p-7 rounded-3xl border border-white/20 relative overflow-hidden shadow-2xl cursor-pointer group"
+              className="glass-card p-6 sm:p-7 rounded-3xl border border-white/20 relative overflow-hidden shadow-2xl cursor-pointer group"
             >
               {/* Dynamic Holographic Specular Glare */}
               <div
@@ -167,11 +164,11 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
                 }}
               />
 
-              <div className="laser-line mb-6"></div>
+              <div className="laser-line mb-5"></div>
 
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6 relative z-10">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center p-1">
+              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5 relative z-10">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center p-1">
                     <svg viewBox="0 0 100 100" className="w-full h-full">
                       <path d="M30 25 L10 50 L30 75" stroke="#10B981" strokeWidth="14" fill="none" strokeLinecap="round"/>
                       <path d="M70 25 L90 50 L70 75" stroke="#8B5CF6" strokeWidth="14" fill="none" strokeLinecap="round"/>
@@ -183,13 +180,13 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
                   </div>
                 </div>
 
-                <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30">
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30">
                   ALL-ACCESS
                 </span>
               </div>
 
-              {/* Editable Name & Badge Details */}
-              <div className="space-y-4 mb-6 font-mono relative z-10">
+              {/* Attendee Name & Details */}
+              <div className="space-y-4 mb-5 font-mono relative z-10">
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] text-slate-400 uppercase">ATTENDEE IDENTIFIER</span>
@@ -209,10 +206,10 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
                       value={passName}
                       onChange={(e) => setPassName(e.target.value.toUpperCase())}
                       onBlur={() => setIsEditingName(false)}
-                      className="mt-1 w-full px-3 py-1.5 text-lg font-black font-syne bg-slate-900 text-emerald-300 rounded-lg border border-emerald-500/50 focus:outline-none"
+                      className="mt-1 w-full px-3 py-1.5 text-base font-black font-syne bg-slate-900 text-emerald-300 rounded-lg border border-emerald-500/50 focus:outline-none"
                     />
                   ) : (
-                    <div className="text-2xl sm:text-3xl font-black font-syne text-white tracking-tight mt-0.5">
+                    <div className="text-2xl font-black font-syne text-white tracking-tight mt-0.5">
                       {passName || "ATTENDEE NAME"}
                     </div>
                   )}
@@ -221,7 +218,7 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
                 <div className="grid grid-cols-3 gap-2 text-xs">
                   <div>
                     <span className="text-[10px] text-slate-500 block">TIER:</span>
-                    <span className="text-emerald-400 font-semibold font-mono">{badgeTier}</span>
+                    <span className="text-emerald-400 font-semibold font-mono">VIP HACKER</span>
                   </div>
                   <div>
                     <span className="text-[10px] text-slate-500 block">PASS ID:</span>
@@ -234,7 +231,7 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
                 </div>
               </div>
 
-              {/* Barcode Strip */}
+              {/* Barcode & Download Button */}
               <div className="p-3 rounded-2xl bg-slate-950/80 border border-white/10 flex items-center justify-between font-mono relative z-10">
                 <div className="text-[9px] text-slate-400">
                   <p>ENCRYPTED CHIP VERIFIED</p>
@@ -242,7 +239,7 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
                 </div>
                 <button
                   onClick={(e) => { e.stopPropagation(); handleQuickDownloadPass(); }}
-                  className="px-3.5 py-1.5 rounded-lg bg-emerald-600/30 hover:bg-emerald-600 border border-emerald-500/40 text-[11px] font-bold text-emerald-300 hover:text-white transition-all flex items-center gap-1.5"
+                  className="px-3 py-1.5 rounded-lg bg-emerald-600/30 hover:bg-emerald-600 border border-emerald-500/40 text-[11px] font-bold text-emerald-300 hover:text-white transition-all flex items-center gap-1.5"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>SAVE PASS</span>
@@ -255,42 +252,42 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
         </div>
 
         {/* Minimalist Cyber Countdown HUD */}
-        <div className="glass-card p-6 sm:p-8 rounded-3xl border border-white/10 relative overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-6 font-mono">
+        <div className="glass-card p-6 sm:p-7 rounded-3xl border border-white/10 relative overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-5 font-mono">
             <div className="flex items-center gap-2 text-xs text-slate-300">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span className="font-bold uppercase tracking-wider text-white">MISSION LAUNCH PROTOCOL</span>
+              <span className="font-bold uppercase tracking-wider text-white">MISSION LAUNCH COUNTDOWN</span>
             </div>
-            <span className="text-xs text-emerald-400">TARGET: OCTOBER 16, 2026 • 09:00 IST</span>
+            <span className="text-xs text-emerald-400">OCTOBER 16, 2026 • 09:00 IST</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto font-mono">
-            <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-emerald-500/30 text-center">
-              <div className="text-3xl sm:text-5xl font-black text-emerald-400 font-syne tracking-tight">
+            <div className="p-4 rounded-2xl bg-slate-900/90 border border-emerald-500/30 text-center">
+              <div className="text-3xl sm:text-4xl font-black text-emerald-400 font-syne tracking-tight">
                 {padZero(timeLeft.days)}
               </div>
-              <div className="text-[11px] uppercase text-slate-400 font-bold tracking-wider mt-1">Days Remaining</div>
+              <div className="text-[10px] uppercase text-slate-400 font-bold tracking-wider mt-1">Days Remaining</div>
             </div>
 
-            <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-violet-500/30 text-center">
-              <div className="text-3xl sm:text-5xl font-black text-violet-400 font-syne tracking-tight">
+            <div className="p-4 rounded-2xl bg-slate-900/90 border border-violet-500/30 text-center">
+              <div className="text-3xl sm:text-4xl font-black text-violet-400 font-syne tracking-tight">
                 {padZero(timeLeft.hours)}
               </div>
-              <div className="text-[11px] uppercase text-slate-400 font-bold tracking-wider mt-1">Hours</div>
+              <div className="text-[10px] uppercase text-slate-400 font-bold tracking-wider mt-1">Hours</div>
             </div>
 
-            <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-yellow-500/30 text-center">
-              <div className="text-3xl sm:text-5xl font-black text-yellow-400 font-syne tracking-tight">
+            <div className="p-4 rounded-2xl bg-slate-900/90 border border-yellow-500/30 text-center">
+              <div className="text-3xl sm:text-4xl font-black text-yellow-400 font-syne tracking-tight">
                 {padZero(timeLeft.minutes)}
               </div>
-              <div className="text-[11px] uppercase text-slate-400 font-bold tracking-wider mt-1">Minutes</div>
+              <div className="text-[10px] uppercase text-slate-400 font-bold tracking-wider mt-1">Minutes</div>
             </div>
 
             <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-cyan-500/30 text-center">
-              <div className="text-3xl sm:text-5xl font-black text-cyan-400 font-syne tracking-tight">
+              <div className="text-3xl sm:text-4xl font-black text-cyan-400 font-syne tracking-tight">
                 {padZero(timeLeft.seconds)}
               </div>
-              <div className="text-[11px] uppercase text-slate-400 font-bold tracking-wider mt-1">Seconds</div>
+              <div className="text-[10px] uppercase text-slate-400 font-bold tracking-wider mt-1">Seconds</div>
             </div>
           </div>
         </div>
