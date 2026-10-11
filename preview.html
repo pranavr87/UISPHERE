@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ TEKNO KRAFFT 2026 | GDG @ SOA, ITER Chapter</title>
+  <meta name="description" content="Next-Gen Developer Immersion: Code, Cloud, AI & Innovation. October 16-18, 2026. Organized by Google Developer Group ITER.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 95,25 95,75 50,95 5,75 5,25' fill='%23080C16' stroke='%234285F4' stroke-width='6'/><path d='M35 32 L20 50 L35 68' stroke='%23EA4335' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M65 32 L80 50 L65 68' stroke='%2334A853' stroke-width='9' fill='none' stroke-linecap='round'/><line x1='42' y1='68' x2='58' y2='32' stroke='%23FBBC04' stroke-width='8' stroke-linecap='round'/></svg>">
+
+  <!-- Google Fonts: Syne, Space Grotesk, JetBrains Mono, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#4285F4',
+              red: '#EA4335',
+              yellow: '#FBBC04',
+              green: '#34A853',
+              dark: '#030509',
+              card: '#080D1A',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          },
+          fontFamily: {
+            syne: ['"Syne"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Inter"', 'sans-serif']
+          },
+          animation: {
+            'spin-slow': 'spin 20s linear infinite',
+            'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'marquee': 'marquee 25s linear infinite',
+            'border-glow': 'borderGlow 6s ease infinite',
+            'laser': 'laser 3s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            borderGlow: {
+              '0%, 100%': { borderColor: 'rgba(66, 133, 244, 0.6)' },
+              '33%': { borderColor: 'rgba(234, 67, 53, 0.6)' },
+              '66%': { borderColor: 'rgba(52, 168, 83, 0.6)' },
+            },
+            laser: {
+              '0%': { opacity: '0.3', transform: 'scaleX(0.95)' },
+              '100%': { opacity: '0.8', transform: 'scaleX(1.05)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Confetti -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* Noise texture overlay */
+    .bg-noise {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 0);
+      background-size: 28px 28px;
+    }
+    
+    /* Cyber grid overlay */
+    .cyber-grid {
+      background-size: 60px 60px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    /* Holographic card shine */
+    .holo-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    /* Laser beam header */
+    .laser-line {
+      background: linear-gradient(90deg, transparent, #4285F4 25%, #EA4335 50%, #FBBC04 75%, #34A853 90%, transparent);
+      height: 2px;
+    }
+
+    /* Custom 3D perspective */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #030509; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+  </style>
+</head>
+<body class="bg-[#030509] text-slate-100 antialiased selection:bg-blue-600 selection:text-white font-sans overflow-x-hidden min-h-screen">
+
+  <!-- Interactive Canvas Particle Grid (Mouse reactive) -->
+  <canvas id="cyber-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- Ambient Google Aurora Lights -->
+  <div class="fixed top-[-100px] left-1/4 w-[650px] h-[550px] bg-blue-600/15 rounded-full blur-[160px] pointer-events-none z-0"></div>
+  <div class="fixed top-[40%] right-[-100px] w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[180px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-[-100px] left-1/3 w-[600px] h-[450px] bg-emerald-600/10 rounded-full blur-[170px] pointer-events-none z-0"></div>
+
+  <!-- Noise and grid layers -->
+  <div class="fixed inset-0 cyber-grid pointer-events-none z-0"></div>
+  <div class="fixed inset-0 bg-noise pointer-events-none z-0"></div>
+
+  <div class="relative z-10 flex flex-col min-h-screen">
+
+    <!-- ================= FLOATING HUD NAVBAR ================= -->
+    <header class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto holo-card rounded-2xl border border-white/10 px-4 sm:px-6 py-3 flex items-center justify-between shadow-2xl">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="relative w-10 h-10 rounded-xl bg-slate-900 border border-white/20 flex items-center justify-center p-1.5 shadow-lg group-hover:scale-105 transition-transform">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+              <path d="M30 25 L10 50 L30 75" stroke="#4285F4" stroke-width="12" fill="none" stroke-linecap="round"/>
+              <path d="M70 25 L90 50 L70 75" stroke="#EA4335" stroke-width="12" fill="none" stroke-linecap="round"/>
+              <line x1="38" y1="75" x2="62" y2="25" stroke="#34A853" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="font-syne font-extrabold text-base sm:text-lg text-white tracking-tight">TEKNO KRAFT</span>
+              <span class="font-mono text-xs font-bold text-brand-blue bg-blue-950/60 px-1.5 py-0.5 rounded border border-blue-500/30">2026</span>
+            </div>
+            <p class="text-[9px] font-mono text-slate-400 uppercase tracking-widest">GDG @ SOA ITER CHAPTER</p>
+          </div>
+        </a>
+
+        <!-- Nav Items -->
+        <nav class="hidden lg:flex items-center gap-1 text-xs font-mono font-medium">
+          <a href="#about" class="px-3 py-1.5 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">01//ABOUT</a>
+          <a href="#schedule" class="px-3 py-1.5 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">02//SCHEDULE</a>
+          <a href="#tracks" class="px-3 py-1.5 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">03//TRACKS</a>
+          <a href="#hacksprint" class="px-3 py-1.5 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">04//HACK_SPRINT</a>
+          <a href="#sponsors" class="px-3 py-1.5 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">05//SPONSORS</a>
+          <a href="#faqs" class="px-3 py-1.5 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">06//FAQS</a>
+          <a href="#terminal" class="px-3 py-1.5 text-brand-yellow hover:bg-yellow-950/30 rounded-lg transition-colors flex items-center gap-1">
+            <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+            <span>CLI</span>
+          </a>
+        </nav>
+
+        <!-- Right Controls -->
+        <div class="flex items-center gap-2.5">
+          <!-- Audio Feedback Toggle -->
+          <button id="sound-btn" onclick="toggleAudio()" class="p-2 rounded-xl bg-slate-900/80 border border-white/10 hover:border-white/20 text-slate-400 hover:text-yellow-400 transition-colors" title="Toggle Sci-Fi Audio FX">
+            <i data-lucide="volume-2" id="sound-icon" class="w-4 h-4 text-emerald-400"></i>
+          </button>
+
+          <!-- Interactive Pass Trigger -->
+          <button onclick="openPassGenerator()" class="hidden sm:flex items-center gap-1.5 px-3 py-2 text-xs font-mono font-bold text-slate-200 bg-slate-900/90 border border-white/15 rounded-xl hover:border-brand-yellow transition-all">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-yellow"></i>
+            <span>VIP PASS</span>
+          </button>
+
+          <!-- Glowing Register Button -->
+          <button onclick="openRegisterModal()" class="relative group px-5 py-2 text-xs font-mono font-bold text-white uppercase tracking-wider rounded-xl overflow-hidden shadow-lg shadow-blue-600/30 transition-all transform hover:-translate-y-0.5">
+            <span class="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 group-hover:from-blue-500 group-hover:to-indigo-500"></span>
+            <span class="relative flex items-center gap-1.5">
+              <span>REGISTER</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ================= ULTRA HERO SECTION ================= -->
+    <main class="flex-grow pt-32 pb-20">
+      
+      <!-- Top Cyber Status Bar -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-400 border-b border-white/10 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-white font-semibold">CORE STATUS: OPERATIONAL</span>
+            <span class="text-slate-600">|</span>
+            <span class="text-slate-400">BHUBANESWAR, INDIA (IST)</span>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <span class="text-brand-blue">OCTOBER 16-18, 2026</span>
+            <span class="text-slate-600">|</span>
+            <span class="text-brand-green">100% FREE ADMISSION</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Hero Grid -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Left: Big Bold Typography & Mission -->
+          <div class="lg:col-span-7 text-left">
+            
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-white/10 text-xs font-mono text-slate-300 mb-6">
+              <span class="text-brand-red font-bold">⚡ GDG ITER CHAPTER PRESENTS</span>
+              <span class="text-slate-600">•</span>
+              <span class="text-emerald-400">PHASE 1 OPEN</span>
+            </div>
+
+            <!-- Massive Title -->
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black font-syne tracking-tight text-white leading-none mb-6">
+              TEKNO<br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-emerald-300 to-yellow-300">
+                KRAFFT 26
+              </span>
+            </h1>
+
+            <p class="text-base sm:text-xl text-slate-300 font-sans max-w-xl leading-relaxed mb-8">
+              A 3-Day Technical Odyssey celebrating <strong class="text-white">Next-Gen AI</strong>, <strong class="text-blue-400">Cloud Infrastructure</strong>, <strong class="text-yellow-400">Modern Web</strong> & the 24-Hour <strong class="text-emerald-400">Hack Sprint</strong>.
+            </p>
+
+            <!-- Action CTAs -->
+            <div class="flex flex-wrap items-center gap-4 mb-10">
+              <button onclick="openRegisterModal()" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-mono font-bold text-sm shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 transition-all flex items-center gap-3 transform hover:-translate-y-0.5">
+                <span>CLAIM ACCESS PASS</span>
+                <i data-lucide="sparkles" class="w-4 h-4 text-yellow-300"></i>
+              </button>
+
+              <a href="#schedule" class="px-7 py-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800/90 border border-white/15 text-slate-200 font-mono font-bold text-sm transition-all flex items-center gap-2 hover:border-white/30">
+                <span>VIEW AGENDA [3 DAYS]</span>
+                <i data-lucide="arrow-down" class="w-4 h-4 text-slate-400"></i>
+              </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-lg font-mono">
+              <div>
+                <div class="text-2xl sm:text-3xl font-extrabold text-white">1,500+</div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-widest mt-0.5">Builders Registered</div>
+              </div>
+              <div>
+                <div class="text-2xl sm:text-3xl font-extrabold text-brand-yellow">₹1.5L+</div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-widest mt-0.5">Hack Prize Pool</div>
+              </div>
+              <div>
+                <div class="text-2xl sm:text-3xl font-extrabold text-brand-green">30+</div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-widest mt-0.5">Sessions & Mentors</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right: Interactive 3D Holographic VIP Pass Card -->
+          <div class="lg:col-span-5 perspective-1000">
+            <div id="hero-badge-card" class="holo-card p-7 rounded-3xl border border-white/15 relative overflow-hidden transition-transform duration-300 ease-out shadow-2xl">
+              
+              <!-- Subtle Holographic Gradient Accent -->
+              <div class="laser-line mb-6"></div>
+
+              <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center p-1">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                      <path d="M30 25 L10 50 L30 75" stroke="#4285F4" stroke-width="14" fill="none" stroke-linecap="round"/>
+                      <path d="M70 25 L90 50 L70 75" stroke="#EA4335" stroke-width="14" fill="none" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-syne font-bold text-white text-sm">TEKNO KRAFT 2026</h4>
+                    <p class="text-[10px] font-mono text-slate-400">GDG ITER • VIP PROTOCOL</p>
+                  </div>
+                </div>
+
+                <span class="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30">
+                  ALL-ACCESS
+                </span>
+              </div>
+
+              <!-- Pass Details -->
+              <div class="space-y-4 mb-6">
+                <div>
+                  <span class="text-[10px] font-mono text-slate-400 uppercase">Attendee Name</span>
+                  <div class="text-2xl font-black font-syne text-white tracking-tight" id="hero-pass-name">
+                    PRANAV RAJ
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs font-mono">
+                  <div>
+                    <span class="text-[10px] text-slate-400 block">ROLE:</span>
+                    <span class="text-blue-400 font-semibold">CORE BUILDER</span>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-slate-400 block">PASS ID:</span>
+                    <span class="text-yellow-400 font-semibold font-mono">#TK26-0042</span>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-slate-400 block">VENUE:</span>
+                    <span class="text-emerald-400 font-semibold">AUDITORIUM 101</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Barcode & QR Code simulation -->
+              <div class="p-3 rounded-2xl bg-slate-950/80 border border-white/10 flex items-center justify-between">
+                <div class="font-mono text-[9px] text-slate-400 space-y-0.5">
+                  <p>ENCRYPTED CHIP VERIFIED</p>
+                  <p class="text-white font-bold tracking-widest">||||| | ||| |||| || |||</p>
+                </div>
+                <button onclick="openPassGenerator()" class="px-3 py-1.5 rounded-lg bg-blue-600/30 hover:bg-blue-600 border border-blue-500/40 text-[11px] font-mono font-semibold text-blue-200 hover:text-white transition-all">
+                  CUSTOMIZE PASS ⚡
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= LIVE HUD COUNTDOWN TICKER ================= -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <div class="holo-card p-6 sm:p-8 rounded-3xl border border-white/10 text-center relative overflow-hidden">
+          
+          <div class="laser-line mb-6"></div>
+
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <div class="flex items-center gap-2 text-xs font-mono text-slate-300">
+              <i data-lucide="timer" class="w-4 h-4 text-yellow-400"></i>
+              <span class="font-bold uppercase tracking-wider text-white">MISSION LAUNCH PROTOCOL</span>
+            </div>
+            <span class="text-xs font-mono text-emerald-400">TARGET: OCTOBER 16, 2026 • 09:00 IST</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto font-mono">
+            <!-- Days -->
+            <div class="p-4 sm:p-6 rounded-2xl bg-slate-900/90 border border-blue-500/30 shadow-lg">
+              <div id="hud-days" class="text-4xl sm:text-6xl font-black text-brand-blue font-syne tracking-tight">04</div>
+              <div class="text-xs uppercase text-slate-400 font-bold tracking-wider mt-1">DAYS REMAINING</div>
+            </div>
+
+            <!-- Hours -->
+            <div class="p-4 sm:p-6 rounded-2xl bg-slate-900/90 border border-red-500/30 shadow-lg">
+              <div id="hud-hours" class="text-4xl sm:text-6xl font-black text-brand-red font-syne tracking-tight">13</div>
+              <div class="text-xs uppercase text-slate-400 font-bold tracking-wider mt-1">HOURS</div>
+            </div>
+
+            <!-- Minutes -->
+            <div class="p-4 sm:p-6 rounded-2xl bg-slate-900/90 border border-yellow-500/30 shadow-lg">
+              <div id="hud-minutes" class="text-4xl sm:text-6xl font-black text-brand-yellow font-syne tracking-tight">57</div>
+              <div class="text-xs uppercase text-slate-400 font-bold tracking-wider mt-1">MINUTES</div>
+            </div>
+
+            <!-- Seconds -->
+            <div class="p-4 sm:p-6 rounded-2xl bg-slate-900/90 border border-emerald-500/30 shadow-lg">
+              <div id="hud-seconds" class="text-4xl sm:text-6xl font-black text-brand-green font-syne tracking-tight">40</div>
+              <div class="text-xs uppercase text-slate-400 font-bold tracking-wider mt-1">SECONDS</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= KINETIC MARQUEE ================= -->
+      <div class="w-full overflow-hidden border-y border-white/10 py-3 bg-slate-950 mb-24">
+        <div class="flex whitespace-nowrap animate-marquee font-mono text-xs font-bold text-slate-400 tracking-widest uppercase">
+          <span class="mx-6 text-brand-blue">⚡ GOOGLE DEVELOPER GROUP ITER</span>
+          <span class="mx-6 text-slate-600">//</span>
+          <span class="mx-6 text-brand-red">🔥 24-HOUR HACK SPRINT ₹1,50,000+</span>
+          <span class="mx-6 text-slate-600">//</span>
+          <span class="mx-6 text-brand-yellow">🚀 GOOGLE CLOUD TITLE SPONSOR</span>
+          <span class="mx-6 text-slate-600">//</span>
+          <span class="mx-6 text-brand-green">🤖 MULTIMODAL AI & VERTEX WORKSHOPS</span>
+          <span class="mx-6 text-slate-600">//</span>
+          <span class="mx-6 text-white">📍 SIKSHA 'O' ANUSANDHAN BHUBANESWAR</span>
+          <span class="mx-6 text-slate-600">//</span>
+          <span class="mx-6 text-brand-blue">⚡ GOOGLE DEVELOPER GROUP ITER</span>
+          <span class="mx-6 text-slate-600">//</span>
+          <span class="mx-6 text-brand-red">🔥 24-HOUR HACK SPRINT ₹1,50,000+</span>
+          <span class="mx-6 text-slate-600">//</span>
+          <span class="mx-6 text-brand-yellow">🚀 GOOGLE CLOUD TITLE SPONSOR</span>
+        </div>
+      </div>
+
+      <!-- ================= SCHEDULE MISSION LOG (IMAGE 2 REIMAGINED) ================= -->
+      <section id="schedule" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-400 text-xs font-mono uppercase mb-4">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+            <span>3-DAY MISSION ROADMAP</span>
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-black font-syne text-white tracking-tight mb-4">
+            Plan Your Fest Journey
+          </h2>
+          <p class="text-sm sm:text-base text-slate-300">
+            Select your day, filter by domain, or search mentors. One-click sync to your Google Calendar.
+          </p>
+        </div>
+
+        <!-- Cyber Day Selector -->
+        <div class="flex justify-center mb-8">
+          <div class="p-1.5 rounded-2xl bg-slate-900 border border-white/10 flex flex-wrap gap-2">
+            <button onclick="setDay(1)" id="day-btn-1" class="px-6 py-3 rounded-xl font-mono text-xs font-bold bg-blue-600 text-white shadow-lg shadow-blue-600/30 transition-all text-left">
+              <div>DAY 01 // KICKOFF</div>
+              <div class="text-[10px] text-blue-200">Cloud & Distributed Web</div>
+            </button>
+
+            <button onclick="setDay(2)" id="day-btn-2" class="px-6 py-3 rounded-xl font-mono text-xs font-bold text-slate-400 hover:text-white hover:bg-white/5 transition-all text-left">
+              <div>DAY 02 // HACK BEGINS</div>
+              <div class="text-[10px] text-slate-500">24H Sprint & System Design</div>
+            </button>
+
+            <button onclick="setDay(3)" id="day-btn-3" class="px-6 py-3 rounded-xl font-mono text-xs font-bold text-slate-400 hover:text-white hover:bg-white/5 transition-all text-left">
+              <div>DAY 03 // FINALS</div>
+              <div class="text-[10px] text-slate-500">Pitches & ₹1.5L Award Gala</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filters & Search Toolbar -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+          <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 font-mono text-xs">
+            <button onclick="setCategory('All')" class="cat-pill px-3.5 py-1.5 rounded-full bg-emerald-500 text-white font-bold border border-emerald-400">ALL</button>
+            <button onclick="setCategory('Keynote')" class="cat-pill px-3.5 py-1.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 hover:text-white">KEYNOTE</button>
+            <button onclick="setCategory('Workshop')" class="cat-pill px-3.5 py-1.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 hover:text-white">WORKSHOP</button>
+            <button onclick="setCategory('Hackathon')" class="cat-pill px-3.5 py-1.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 hover:text-white">HACKATHON</button>
+            <button onclick="setCategory('Competition')" class="cat-pill px-3.5 py-1.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 hover:text-white">COMPETITION</button>
+            <button onclick="setCategory('Talk')" class="cat-pill px-3.5 py-1.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 hover:text-white">TALK</button>
+          </div>
+
+          <div class="relative w-full sm:w-72">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input type="text" id="sched-search-input" oninput="filterScheduleSearch(this.value)" placeholder="Search sessions or mentors..." class="w-full pl-9 pr-3 py-2 text-xs font-mono bg-slate-900 text-white rounded-xl border border-white/10 focus:outline-none focus:border-blue-500">
+          </div>
+        </div>
+
+        <!-- Rendered Schedule Nodes -->
+        <div id="schedule-list" class="space-y-4">
+          <!-- Injected via JavaScript -->
+        </div>
+
+      </section>
+
+      <!-- ================= 24-HOUR HACKATHON BATTLEFIELD ================= -->
+      <section id="hacksprint" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <div class="holo-card p-8 sm:p-12 rounded-3xl border border-red-500/30 relative overflow-hidden">
+          
+          <div class="laser-line mb-8"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-7">
+              <span class="px-3 py-1 rounded-full bg-red-950/60 border border-red-500/40 text-red-400 text-xs font-mono font-bold uppercase">
+                🔥 24-HOUR MARATHON // SPRINT PROTOCOL
+              </span>
+
+              <h2 class="text-4xl sm:text-6xl font-black font-syne text-white mt-4 mb-4 leading-tight">
+                CODE. SHIP. DISRUPT.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-yellow-400 to-emerald-400">
+                  ₹1,50,000+ CASH POOL
+                </span>
+              </h2>
+
+              <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                Odisha's biggest collegiate hack sprint. Form your squad of 2–4 engineers, pick a real industry challenge statement from Google Cloud or GitHub, and build non-stop for 24 hours.
+              </p>
+
+              <div class="grid grid-cols-2 gap-4 text-xs font-mono text-slate-300 mb-8">
+                <div class="p-3 rounded-xl bg-slate-900/80 border border-white/5 flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span>24/7 Red Bull & Pizza Fuel</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900/80 border border-white/5 flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span>Direct Mentorship from GDEs</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900/80 border border-white/5 flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span>1 Gbps Fiber Wireline</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900/80 border border-white/5 flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span>Fast-Track VC & Hiring Rounds</span>
+                </div>
+              </div>
+
+              <button onclick="openRegisterModal()" class="px-8 py-4 rounded-xl bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-500 hover:to-orange-400 text-white font-mono font-bold text-sm shadow-xl shadow-red-600/30 flex items-center gap-2">
+                <span>REGISTER SQUAD FOR SPRINT</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- Podium Cards -->
+            <div class="lg:col-span-5 space-y-4">
+              <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-950/40 to-slate-900 border border-amber-400/40 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-mono font-bold text-amber-400 uppercase">🏆 GRAND CHAMPION</span>
+                  <div class="text-3xl font-black font-syne text-white">₹75,000</div>
+                  <p class="text-[11px] text-slate-400">Cash Award + Google Cloud Credits + Swag Bag</p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold font-syne text-xl">
+                  1ST
+                </div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-400/30 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-mono font-bold text-slate-300 uppercase">🥈 1ST RUNNER UP</span>
+                  <div class="text-2xl font-black font-syne text-white">₹45,000</div>
+                  <p class="text-[11px] text-slate-400">Cash Award + Postman API Subscriptions</p>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center font-bold font-syne">
+                  2ND
+                </div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-slate-900/90 border border-orange-500/30 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-mono font-bold text-orange-400 uppercase">🥉 2ND RUNNER UP</span>
+                  <div class="text-2xl font-black font-syne text-white">₹30,000</div>
+                  <p class="text-[11px] text-slate-400">Cash Award + Hardware Dev Kits</p>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-orange-950 text-orange-400 flex items-center justify-center font-bold font-syne">
+                  3RD
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= SPONSORS SHOWCASE (IMAGE 5) ================= -->
+      <section id="sponsors" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-xs font-mono font-bold text-blue-400 tracking-widest uppercase">• POWERED BY GIANTS •</span>
+          <h2 class="text-4xl sm:text-5xl font-black font-syne text-white mt-2 mb-3">Industry Partners</h2>
+          <p class="text-sm text-slate-300">Supported by global technology leaders providing cloud infra, credits, and AI mentors.</p>
+        </div>
+
+        <!-- Google Cloud Title Box -->
+        <div class="max-w-3xl mx-auto holo-card p-8 sm:p-10 rounded-3xl border border-blue-500/40 text-center mb-12 shadow-2xl">
+          <span class="px-3 py-1 rounded-full bg-blue-950 text-blue-300 border border-blue-500/30 text-[10px] font-mono font-bold uppercase">
+            ⚡ TITLE SPONSOR
+          </span>
+          <a href="https://cloud.google.com" target="_blank" class="block text-4xl sm:text-6xl font-black font-syne text-white hover:text-blue-400 transition-colors mt-3 mb-2">
+            Google Cloud
+          </a>
+          <p class="text-sm text-slate-300 max-w-lg mx-auto mb-6">
+            Title sponsor supporting developer education, cloud credits, and AI infrastructure.
+          </p>
+          <div class="inline-block px-4 py-2 rounded-xl bg-blue-900/30 border border-blue-500/20 text-xs font-mono text-blue-200">
+            $500+ Cloud Credits to All Attendees • Vertex AI Mentorship
+          </div>
+        </div>
+
+        <!-- Platinum & Gold Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          <div class="holo-card p-6 rounded-2xl border border-white/10 text-center">
+            <h4 class="text-xl font-bold font-syne text-white mb-1">GitHub</h4>
+            <span class="text-[10px] font-mono font-bold text-slate-300 px-2 py-0.5 rounded bg-slate-800 border border-slate-600/30">PLATINUM PARTNER</span>
+            <p class="text-xs text-slate-400 mt-3">Empowering developers to build, secure, and ship software with Copilot.</p>
+          </div>
+
+          <div class="holo-card p-6 rounded-2xl border border-white/10 text-center">
+            <h4 class="text-xl font-bold font-syne text-white mb-1">Firebase</h4>
+            <span class="text-[10px] font-mono font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-950/40 border border-amber-500/30">PLATINUM PARTNER</span>
+            <p class="text-xs text-slate-400 mt-3">Google's application platform powering real-time web & mobile experiences.</p>
+          </div>
+
+          <div class="holo-card p-6 rounded-2xl border border-white/10 text-center">
+            <h4 class="text-xl font-bold font-syne text-white mb-1">Postman</h4>
+            <span class="text-[10px] font-mono font-bold text-orange-400 px-2 py-0.5 rounded bg-orange-950/40 border border-orange-500/30">GOLD PARTNER</span>
+            <p class="text-xs text-slate-400 mt-3">The premier API development platform for building, mocking and testing APIs.</p>
+          </div>
+
+          <div class="holo-card p-6 rounded-2xl border border-white/10 text-center">
+            <h4 class="text-xl font-bold font-syne text-white mb-1">JetBrains</h4>
+            <span class="text-[10px] font-mono font-bold text-rose-400 px-2 py-0.5 rounded bg-rose-950/40 border border-rose-500/30">GOLD PARTNER</span>
+            <p class="text-xs text-slate-400 mt-3">Essential professional IDEs: WebStorm, IntelliJ, and PyCharm.</p>
+          </div>
+        </div>
+
+        <!-- Become a Sponsor CTA -->
+        <div class="max-w-2xl mx-auto p-8 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-950 border border-white/10 text-center">
+          <h3 class="text-2xl font-bold font-syne text-white mb-2">Want to Sponsor Tekno Krraft 2026?</h3>
+          <p class="text-xs sm:text-sm text-slate-400 mb-5">Connect your brand with 1,500+ top engineering talent and student builders at ITER Campus.</p>
+          <button onclick="openSponsorModal()" class="px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono font-bold text-xs shadow-lg shadow-emerald-600/30 transition-all">
+            BECOME A SPONSOR &gt;
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= INTERACTIVE CLI TERMINAL ================= -->
+      <section id="terminal" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <div class="rounded-3xl bg-slate-950 border border-white/15 shadow-2xl overflow-hidden font-mono text-xs">
+          <!-- Terminal Header -->
+          <div class="px-4 py-3 bg-slate-900 border-b border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500"></span>
+              <span class="text-slate-400 text-[11px] ml-2">gdg-shell // tekno-krraft-v2.6</span>
+            </div>
+            <span class="text-[10px] text-slate-500">Type 'help' for commands</span>
+          </div>
+
+          <!-- Terminal Output Body -->
+          <div id="term-logs" class="p-5 space-y-2 h-64 overflow-y-auto text-slate-300">
+            <p class="text-emerald-400">=== WELCOME TO TEKNO KRAFFT 2026 CLI ===</p>
+            <p class="text-slate-400">System initialized. Type a command or click quick action buttons below.</p>
+            <p class="text-blue-400">Available commands: <span class="text-yellow-300">schedule</span>, <span class="text-yellow-300">hack</span>, <span class="text-yellow-300">pass</span>, <span class="text-yellow-300">venue</span>, <span class="text-yellow-300">clear</span></p>
+          </div>
+
+          <!-- Terminal Prompt Input -->
+          <div class="p-3 bg-slate-900/70 border-t border-white/10 flex items-center gap-2">
+            <span class="text-brand-green font-bold">&gt;</span>
+            <input type="text" id="term-input" onkeydown="handleTermCommand(event)" placeholder="Type 'schedule' or 'hack'..." class="w-full bg-transparent text-white focus:outline-none font-mono text-xs">
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FAQS ACCORDION (IMAGE 4) ================= -->
+      <section id="faqs" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <div class="text-center mb-12">
+          <span class="text-xs font-mono font-bold text-blue-400 uppercase">• NEED CLARITY? •</span>
+          <h2 class="text-4xl font-black font-syne text-white mt-1 mb-2">Frequently Asked Questions</h2>
+          <p class="text-sm text-slate-400">Everything you need to know about registration, team sizes, eligibility, and certificates.</p>
+        </div>
+
+        <div class="space-y-3 font-sans">
+          <!-- FAQ 1 -->
+          <div class="rounded-2xl border border-blue-500/40 bg-slate-900/80 overflow-hidden">
+            <button onclick="toggleFaqAccordion(1)" class="w-full p-5 text-left flex items-center justify-between">
+              <span class="font-bold text-base text-white">Is there any registration fee for Tekno Krraft 2026?</span>
+              <span id="faq-chevron-1" class="text-blue-400 rotate-180 transition-transform">▼</span>
+            </button>
+            <div id="faq-body-1" class="px-5 pb-5 text-xs text-slate-300 border-t border-white/5 pt-3 leading-relaxed">
+              No! Registration for Tekno Krraft 2026 is completely free for all verified students, research scholars, and developers courtesy of GDG ITER Chapter and our event sponsors.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="rounded-2xl border border-white/10 bg-slate-900/50 overflow-hidden">
+            <button onclick="toggleFaqAccordion(2)" class="w-full p-5 text-left flex items-center justify-between">
+              <span class="font-bold text-base text-white">Who is eligible to participate in the workshops and hackathon?</span>
+              <span id="faq-chevron-2" class="text-slate-400 transition-transform">▼</span>
+            </button>
+            <div id="faq-body-2" class="hidden px-5 pb-5 text-xs text-slate-300 border-t border-white/5 pt-3 leading-relaxed">
+              Any undergraduate or postgraduate student enrolled in an accredited higher institution is eligible. Just bring your valid college ID card during physical check-in.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="rounded-2xl border border-white/10 bg-slate-900/50 overflow-hidden">
+            <button onclick="toggleFaqAccordion(3)" class="w-full p-5 text-left flex items-center justify-between">
+              <span class="font-bold text-base text-white">What is the maximum allowed team size for the Hack Sprint?</span>
+              <span id="faq-chevron-3" class="text-slate-400 transition-transform">▼</span>
+            </button>
+            <div id="faq-body-3" class="hidden px-5 pb-5 text-xs text-slate-300 border-t border-white/5 pt-3 leading-relaxed">
+              Teams can consist of 2 to 4 members. Solo developers are also permitted, but multi-disciplinary team collaboration is strongly encouraged.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="rounded-2xl border border-white/10 bg-slate-900/50 overflow-hidden">
+            <button onclick="toggleFaqAccordion(4)" class="w-full p-5 text-left flex items-center justify-between">
+              <span class="font-bold text-base text-white">Will participation certificates be issued?</span>
+              <span id="faq-chevron-4" class="text-slate-400 transition-transform">▼</span>
+            </button>
+            <div id="faq-body-4" class="hidden px-5 pb-5 text-xs text-slate-300 border-t border-white/5 pt-3 leading-relaxed">
+              Yes! All verified participants who check in will receive an official GDG Verified Digital Certificate with individual verification credentials.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="rounded-2xl border border-white/10 bg-slate-900/50 overflow-hidden">
+            <button onclick="toggleFaqAccordion(5)" class="w-full p-5 text-left flex items-center justify-between">
+              <span class="font-bold text-base text-white">What should I bring to the technical workshops?</span>
+              <span id="faq-chevron-5" class="text-slate-400 transition-transform">▼</span>
+            </button>
+            <div id="faq-body-5" class="hidden px-5 pb-5 text-xs text-slate-300 border-t border-white/5 pt-3 leading-relaxed">
+              Please bring your laptop, charger, student ID, and have VS Code / Cursor and Git pre-installed. Free high-speed 1 Gbps Wi-Fi is provided throughout the labs.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ================= FOOTER (IMAGE 3) ================= -->
+    <footer class="bg-[#020306] border-t border-white/10 pt-16 pb-12 font-sans">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+          
+          <div class="lg:col-span-4">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-9 h-9 rounded-xl bg-slate-900 border border-white/15 flex items-center justify-center p-1.5">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                  <path d="M30 25 L10 50 L30 75" stroke="#4285F4" stroke-width="12" fill="none" stroke-linecap="round"/>
+                  <path d="M70 25 L90 50 L70 75" stroke="#EA4335" stroke-width="12" fill="none" stroke-linecap="round"/>
+                  <line x1="38" y1="75" x2="62" y2="25" stroke="#34A853" stroke-width="10" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <span class="font-syne font-bold text-lg text-white">Tekno Krraft 2026</span>
+                <p class="text-[10px] font-mono text-slate-400">GDG @ SOA, ITER Chapter</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed mb-6 max-w-sm">
+              The premier 3-day technical fest empowering students, developers, and tech enthusiasts with cutting edge Cloud, Gen AI, Mobile, and Open Source learning.
+            </p>
+          </div>
+
+          <div class="lg:col-span-2">
+            <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">QUICK NAVIGATION</h4>
+            <ul class="space-y-2 text-xs font-mono text-slate-400">
+              <li><a href="#about" class="hover:text-white">About Fest</a></li>
+              <li><a href="#schedule" class="hover:text-white">Event Schedule</a></li>
+              <li><a href="#hacksprint" class="hover:text-white">Hack Sprint</a></li>
+              <li><a href="#sponsors" class="hover:text-white">Sponsors</a></li>
+              <li><a href="#faqs" class="hover:text-white">FAQs</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-3">
+            <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">COMMUNITY & GUIDELINES</h4>
+            <ul class="space-y-2 text-xs font-mono text-slate-400">
+              <li><a href="#" class="hover:text-white">Code of Conduct</a></li>
+              <li><a href="https://developers.google.com/community/gdg" target="_blank" class="hover:text-white">GDG Guidelines ↗</a></li>
+              <li><a href="#" class="hover:text-white">Terms & Privacy</a></li>
+              <li><a href="#hacksprint" class="hover:text-white">Hackathon Rules</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-3">
+            <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">VENUE & CONTACT</h4>
+            <div class="text-xs text-slate-400 space-y-1 mb-4">
+              <p class="font-bold text-white">Siksha 'O' Anusandhan</p>
+              <p>ITER Campus, Khandagiri Square</p>
+              <p>Bhubaneswar, Odisha 751030</p>
+            </div>
+            <a href="mailto:gdg@iter.ac.in" class="text-xs font-mono text-brand-blue hover:underline">
+              gdg@iter.ac.in
+            </a>
+          </div>
+
+        </div>
+
+        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="text-xs text-slate-400 text-center md:text-left">
+            <p>© 2026 Tekno Krraft - GDG ITER Chapter. Built for builders with ❤️</p>
+            <p class="text-[10px] text-slate-600 mt-1">Google Developer Group is an independent group; activities and opinions expressed here are in no way linked to Google, the corporation.</p>
+          </div>
+
+          <!-- Powered by Netlify (Image 3) -->
+          <a href="https://www.netlify.com" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-emerald-500/30 text-[11px] font-mono text-slate-300 hover:text-white">
+            <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+            <span>Powered by <strong class="text-white">Netlify</strong></span>
+          </a>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ================= PASS GENERATOR MODAL ================= -->
+  <div id="pass-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="relative w-full max-w-lg bg-slate-950 border border-white/20 rounded-3xl p-6 shadow-2xl">
+      <button onclick="closePassGenerator()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
+      
+      <span class="text-xs font-mono text-yellow-400 font-bold uppercase">DIGITAL VIP PASS GENERATOR</span>
+      <h3 class="text-2xl font-black font-syne text-white mt-1 mb-4">Customize Your Badge</h3>
+
+      <div class="space-y-3 mb-5 font-mono text-xs">
+        <div>
+          <label class="text-slate-400 block mb-1">Your Full Name</label>
+          <input type="text" id="custom-name-input" value="Pranav Raj" oninput="updateModalPass(this.value)" class="w-full px-3 py-2 bg-slate-900 text-white rounded-xl border border-white/10 focus:outline-none">
+        </div>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-gradient-to-r from-blue-950 via-slate-900 to-black border border-blue-500/50 mb-5">
+        <div class="text-[10px] font-mono text-blue-400 mb-1">GDG ITER VIP ATTENDEE</div>
+        <div id="modal-pass-preview-name" class="text-2xl font-black font-syne text-white">PRANAV RAJ</div>
+        <div class="text-xs font-mono text-slate-400 mt-2">OCT 16-18, 2026 • ITER SOA CAMPUS</div>
+      </div>
+
+      <button onclick="triggerPassDownload()" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-mono font-bold text-xs text-white">
+        DOWNLOAD VIP PASS 🎟️
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= REGISTRATION MODAL ================= -->
+  <div id="reg-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="relative w-full max-w-lg bg-slate-950 border border-white/20 rounded-3xl p-6 shadow-2xl">
+      <button onclick="closeRegisterModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
+
+      <div id="reg-form-wrap">
+        <span class="text-xs font-mono text-emerald-400 font-bold uppercase">100% FREE REGISTRATION</span>
+        <h3 class="text-2xl font-black font-syne text-white mt-1 mb-4">Register for Tekno Krraft 2026</h3>
+
+        <form onsubmit="confirmRegistration(event)" class="space-y-4 font-mono text-xs">
+          <div>
+            <label class="text-slate-400 block mb-1">Full Name</label>
+            <input type="text" required placeholder="e.g. Priyanshu Mohanty" class="w-full px-3 py-2.5 bg-slate-900 text-white rounded-xl border border-white/10 focus:outline-none">
+          </div>
+          <div>
+            <label class="text-slate-400 block mb-1">Email Address</label>
+            <input type="email" required placeholder="name@college.edu" class="w-full px-3 py-2.5 bg-slate-900 text-white rounded-xl border border-white/10 focus:outline-none">
+          </div>
+          <div>
+            <label class="text-slate-400 block mb-1">College / Organization</label>
+            <input type="text" required value="ITER, Siksha 'O' Anusandhan" class="w-full px-3 py-2.5 bg-slate-900 text-white rounded-xl border border-white/10 focus:outline-none">
+          </div>
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-white uppercase tracking-wider">
+            COMPLETE FREE REGISTRATION ✨
+          </button>
+        </form>
+      </div>
+
+      <div id="reg-success-wrap" class="hidden text-center py-6">
+        <div class="text-4xl mb-3">🎉</div>
+        <h3 class="text-2xl font-black font-syne text-white mb-2">Registration Confirmed!</h3>
+        <p class="text-xs text-slate-300 font-mono mb-4">Pass ID: <span class="text-emerald-400 font-bold">#TK26-9182</span></p>
+        <p class="text-xs text-slate-400 mb-6">See you on October 16 at ITER Campus Auditorium 101!</p>
+        <button onclick="closeRegisterModal()" class="px-6 py-2 rounded-xl bg-slate-800 text-white text-xs font-mono font-bold">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SPONSOR MODAL ================= -->
+  <div id="sponsor-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="relative w-full max-w-lg bg-slate-950 border border-white/20 rounded-3xl p-6 shadow-2xl">
+      <button onclick="closeSponsorModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
+
+      <span class="text-xs font-mono text-emerald-400 font-bold uppercase">PARTNERSHIP INQUIRY</span>
+      <h3 class="text-2xl font-black font-syne text-white mt-1 mb-4">Become a Sponsor</h3>
+
+      <form onsubmit="confirmSponsorship(event)" class="space-y-4 font-mono text-xs">
+        <div>
+          <label class="text-slate-400 block mb-1">Company / Organization</label>
+          <input type="text" required placeholder="Acme Inc." class="w-full px-3 py-2.5 bg-slate-900 text-white rounded-xl border border-white/10 focus:outline-none">
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1">Work Email</label>
+          <input type="email" required placeholder="sponsor@company.com" class="w-full px-3 py-2.5 bg-slate-900 text-white rounded-xl border border-white/10 focus:outline-none">
+        </div>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-white uppercase tracking-wider">
+          REQUEST SPONSOR DECK 📩
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= CORE JAVASCRIPT ================= -->
+  <script>
+    lucide.createIcons();
+
+    // 1. WEB AUDIO SYNTHESIZER FOR SCI-FI CLICK SOUNDS
+    let audioEnabled = true;
+    let audioCtx = null;
+
+    function playBeep(freq = 600, type = 'sine', duration = 0.08) {
+      if (!audioEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      const icon = document.getElementById('sound-icon');
+      if (audioEnabled) {
+        icon.className = "w-4 h-4 text-emerald-400";
+        playBeep(800, 'triangle', 0.1);
+      } else {
+        icon.className = "w-4 h-4 text-slate-600";
+      }
+    }
+
+    // Attach click sound to interactive buttons
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('button') || e.target.closest('a')) {
+        playBeep(900, 'sine', 0.05);
+      }
+    });
+
+    // 2. INTERACTIVE CANVAS PARTICLE CONSTELLATION
+    const canvas = document.getElementById('cyber-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    for (let i = 0; i < 45; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        radius: Math.random() * 2 + 1
+      });
+    }
+
+    let mouse = { x: -1000, y: -1000 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw connections
+      ctx.strokeStyle = 'rgba(66, 133, 244, 0.07)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        // Mouse reaction
+        const mdx = mouse.x - p.x;
+        const mdy = mouse.y - p.y;
+        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+        if (mdist < 120) {
+          p.x -= mdx * 0.02;
+          p.y -= mdy * 0.02;
+        }
+
+        ctx.fillStyle = 'rgba(66, 133, 244, 0.4)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // 3. COUNTDOWN PROTOCOL
+    const targetDate = new Date('2026-10-16T09:00:00+05:30').getTime();
+    function tickCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff > 0) {
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById('hud-days').innerText = String(d).padStart(2, '0');
+        document.getElementById('hud-hours').innerText = String(h).padStart(2, '0');
+        document.getElementById('hud-minutes').innerText = String(m).padStart(2, '0');
+        document.getElementById('hud-seconds').innerText = String(s).padStart(2, '0');
+      }
+    }
+    setInterval(tickCountdown, 1000);
+    tickCountdown();
+
+    // 4. SCHEDULE DATA & FILTER ENGINE
+    const scheduleItems = [
+      {
+        day: 1,
+        category: 'Keynote',
+        level: 'ALL LEVELS',
+        time: '09:00 AM - 10:30 AM',
+        title: 'Grand Opening & Keynote: The Future of Developer Ecosystems',
+        description: 'Inauguration by GDG Leads & University Officials followed by a visionary keynote on AI-driven software development.',
+        speaker: 'Dr. Ananya Patnaik',
+        speakerRole: 'Lead Cloud Architect & GDG Mentor • Google Developer Student Clubs',
+        speakerAvatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
+        location: 'Main Auditorium (Auditorium 101)',
+        badgeColor: 'border-red-500/40 text-red-400 bg-red-950/40'
+      },
+      {
+        day: 1,
+        category: 'Workshop',
+        level: 'INTERMEDIATE',
+        time: '11:00 AM - 01:00 PM',
+        title: 'Building Production Cloud Systems with Google Cloud & Kubernetes',
+        description: 'Deep dive into multi-region deployments, autoscaling containerized workloads with GKE, and cost-optimized cloud native architecture.',
+        speaker: 'Rahul Sen',
+        speakerRole: 'Google Developer Expert (Cloud) & Principal SRE',
+        speakerAvatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80',
+        location: 'Tech Lab Alpha (C-Block 304)',
+        badgeColor: 'border-blue-500/40 text-blue-400 bg-blue-950/40'
+      },
+      {
+        day: 1,
+        category: 'Competition',
+        level: 'ALL LEVELS',
+        time: '03:45 PM - 05:30 PM',
+        title: 'Speed Coding Arena: Algorithmic Duel 2026',
+        description: 'High-octane competitive programming contest with live leaderboard, lightning rounds, and swag rewards.',
+        speaker: 'GDG Competitive Cell',
+        speakerRole: 'Campus Coding Leads',
+        speakerAvatar: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=200&q=80',
+        location: 'Central Computer Center 1 & 2',
+        badgeColor: 'border-emerald-500/40 text-emerald-400 bg-emerald-950/40'
+      },
+      {
+        day: 2,
+        category: 'Keynote',
+        level: 'ALL LEVELS',
+        time: '09:00 AM - 10:15 AM',
+        title: 'Autonomous AI Agents & Multimodal Intelligence in 2026',
+        description: 'Explore the bleeding edge of foundation models, Gemini API capabilities, tool-augmented reasoning, and agent swarms.',
+        speaker: 'Priya Sharma',
+        speakerRole: 'Staff AI Research Engineer & Gemini Ecosystem Lead',
+        speakerAvatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
+        location: 'Main Auditorium (Auditorium 101)',
+        badgeColor: 'border-blue-500/40 text-blue-400 bg-blue-950/40'
+      },
+      {
+        day: 2,
+        category: 'Hackathon',
+        level: 'ALL LEVELS',
+        time: '10:30 AM (24H SPRINT START)',
+        title: '24-Hour Hack Sprint: Problem Statements Revealed & Coding Begins',
+        description: 'The marquee hackathon begins! 1,500+ developers brainstorm, prototype, and build production MVPs with 24h mentorship.',
+        speaker: 'GDG Hackathon Jury & Mentors',
+        speakerRole: 'Supported by Google Cloud, GitHub & Postman',
+        speakerAvatar: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=200&q=80',
+        location: 'Convention Hall & Innovation Arena',
+        badgeColor: 'border-red-500/40 text-red-400 bg-red-950/40'
+      },
+      {
+        day: 3,
+        category: 'Hackathon',
+        level: 'ALL LEVELS',
+        time: '10:30 AM',
+        title: 'Hack Sprint Code Freeze & Submission Cutoff',
+        description: 'Official submission cutoff on the portal! Repositories locked and preliminary evaluation commences.',
+        speaker: 'Grand Judging Panel',
+        speakerRole: 'Senior Architects & Founders',
+        speakerAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
+        location: 'Main Stage',
+        badgeColor: 'border-red-500/40 text-red-400 bg-red-950/40'
+      },
+      {
+        day: 3,
+        category: 'Keynote',
+        level: 'ALL LEVELS',
+        time: '03:00 PM - 04:30 PM',
+        title: 'Grand Award Ceremony, Swag Distribution & Closing Gala',
+        description: 'Declaration of the Hack Sprint winners (₹1,50,000+ Prize Pool), track bounties, and official closing celebrations.',
+        speaker: 'University Leadership & GDG Leads',
+        speakerRole: 'Siksha \'O\' Anusandhan & Google Developer Group',
+        speakerAvatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
+        location: 'Main Auditorium (Auditorium 101)',
+        badgeColor: 'border-emerald-500/40 text-emerald-400 bg-emerald-950/40'
+      }
+    ];
+
+    let activeDay = 1;
+    let activeCat = 'All';
+    let searchQuery = '';
+
+    function renderSchedule() {
+      const list = document.getElementById('schedule-list');
+      const filtered = scheduleItems.filter(item => {
+        const d = item.day === activeDay;
+        const c = activeCat === 'All' || item.category.toLowerCase() === activeCat.toLowerCase();
+        const s = searchQuery === '' || item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.speaker.toLowerCase().includes(searchQuery.toLowerCase());
+        return d && c && s;
+      });
+
+      if (filtered.length === 0) {
+        list.innerHTML = `<div class="p-8 text-center text-slate-500 font-mono">NO SESSIONS FOUND FOR CURRENT FILTER</div>`;
+        return;
+      }
+
+      list.innerHTML = filtered.map(item => `
+        <div class="holo-card p-6 sm:p-7 rounded-2xl border border-white/10 hover:border-blue-500/40 transition-all shadow-xl">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold uppercase border ${item.badgeColor}">${item.category}</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono text-slate-300 bg-slate-800">${item.level}</span>
+            </div>
+            <div class="text-xs font-mono font-semibold text-yellow-400 bg-yellow-950/20 px-3 py-1 rounded-lg border border-yellow-500/20">
+              🕒 ${item.time}
+            </div>
+          </div>
+
+          <h3 class="text-lg sm:text-xl font-bold font-syne text-white mb-2">${item.title}</h3>
+          <p class="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">${item.description}</p>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-white/10">
+            <div class="flex items-center gap-3">
+              <img src="${item.speakerAvatar}" class="w-10 h-10 rounded-full object-cover border border-white/20">
+              <div>
+                <div class="text-sm font-bold text-white font-syne">${item.speaker}</div>
+                <div class="text-[11px] text-slate-400">${item.speakerRole}</div>
+                <div class="text-[10px] font-mono text-red-400">📍 ${item.location}</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(item.title)}&location=${encodeURIComponent(item.location)}" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-800 text-xs font-mono text-slate-200 hover:text-white hover:bg-slate-700 transition-colors">
+                📅 Add to Calendar
+              </a>
+              <button onclick="openRegisterModal()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-mono font-bold text-white shadow-md">
+                Register Track &gt;
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function setDay(dayNum) {
+      activeDay = dayNum;
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.getElementById(`day-btn-${i}`);
+        if (i === dayNum) {
+          btn.className = "px-6 py-3 rounded-xl font-mono text-xs font-bold bg-blue-600 text-white shadow-lg shadow-blue-600/30 transition-all text-left";
+        } else {
+          btn.className = "px-6 py-3 rounded-xl font-mono text-xs font-bold text-slate-400 hover:text-white hover:bg-white/5 transition-all text-left";
+        }
+      }
+      renderSchedule();
+    }
+
+    function setCategory(cat) {
+      activeCat = cat;
+      const pills = document.querySelectorAll('.cat-pill');
+      pills.forEach(p => {
+        if (p.textContent.trim().toLowerCase() === cat.toLowerCase()) {
+          p.className = "cat-pill px-3.5 py-1.5 rounded-full bg-emerald-500 text-white font-bold border border-emerald-400";
+        } else {
+          p.className = "cat-pill px-3.5 py-1.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 hover:text-white";
+        }
+      });
+      renderSchedule();
+    }
+
+    function filterScheduleSearch(val) {
+      searchQuery = val.trim();
+      renderSchedule();
+    }
+
+    // 5. TERMINAL CLI ENGINE
+    function handleTermCommand(e) {
+      if (e.key === 'Enter') {
+        const input = document.getElementById('term-input');
+        const cmd = input.value.trim().toLowerCase();
+        input.value = '';
+        executeCmd(cmd);
+      }
+    }
+
+    function executeCmd(cmd) {
+      const logs = document.getElementById('term-logs');
+      logs.innerHTML += `<p class="text-slate-500 font-bold">&gt; ${cmd}</p>`;
+      
+      switch (cmd) {
+        case 'help':
+          logs.innerHTML += `<p class="text-blue-300">Commands: schedule, hack, pass, venue, clear, date, secret</p>`;
+          break;
+        case 'schedule':
+          logs.innerHTML += `<p class="text-emerald-400">Day 1: Cloud & Web3 | Day 2: AI & 24H Hack | Day 3: Code Finals</p>`;
+          window.location.hash = '#schedule';
+          break;
+        case 'hack':
+          logs.innerHTML += `<p class="text-red-400">24-Hour Hack Sprint: ₹1,50,000+ Prize Pool. Oct 17 10:30 AM.</p>`;
+          window.location.hash = '#hacksprint';
+          break;
+        case 'pass':
+          openPassGenerator();
+          logs.innerHTML += `<p class="text-yellow-400">Opening Digital VIP Badge Generator...</p>`;
+          break;
+        case 'venue':
+          logs.innerHTML += `<p class="text-slate-300">ITER Campus, Siksha 'O' Anusandhan, Khandagiri, Bhubaneswar 751030.</p>`;
+          break;
+        case 'clear':
+          logs.innerHTML = '';
+          break;
+        case 'secret':
+          confetti({ particleCount: 150, spread: 90 });
+          logs.innerHTML += `<p class="text-yellow-300 font-bold">🎉 EASTER EGG UNLOCKED: You are an official GDG Hacker 2026!</p>`;
+          break;
+        default:
+          logs.innerHTML += `<p class="text-red-400">Command not found: '${cmd}'. Type 'help' for options.</p>`;
+      }
+      logs.scrollTop = logs.scrollHeight;
+    }
+
+    // 6. FAQ ACCORDION
+    function toggleFaqAccordion(id) {
+      const body = document.getElementById(`faq-body-${id}`);
+      const chevron = document.getElementById(`faq-chevron-${id}`);
+      if (body.classList.contains('hidden')) {
+        body.classList.remove('hidden');
+        chevron.classList.add('rotate-180', 'text-blue-400');
+      } else {
+        body.classList.add('hidden');
+        chevron.classList.remove('rotate-180', 'text-blue-400');
+      }
+    }
+
+    // 7. MODALS
+    function openPassGenerator() { document.getElementById('pass-modal').classList.remove('hidden'); }
+    function closePassGenerator() { document.getElementById('pass-modal').classList.add('hidden'); }
+    function openRegisterModal() { document.getElementById('reg-modal').classList.remove('hidden'); }
+    function closeRegisterModal() { document.getElementById('reg-modal').classList.add('hidden'); }
+    function openSponsorModal() { document.getElementById('sponsor-modal').classList.remove('hidden'); }
+    function closeSponsorModal() { document.getElementById('sponsor-modal').classList.add('hidden'); }
+
+    function updateModalPass(val) {
+      document.getElementById('modal-pass-preview-name').innerText = val.toUpperCase() || 'ATTENDEE NAME';
+      document.getElementById('hero-pass-name').innerText = val.toUpperCase() || 'ATTENDEE NAME';
+    }
+
+    function triggerPassDownload() {
+      confetti({ particleCount: 100, spread: 70 });
+      alert('VIP Pass generated and verified for Tekno Krraft 2026!');
+      closePassGenerator();
+    }
+
+    function confirmRegistration(e) {
+      e.preventDefault();
+      confetti({ particleCount: 120, spread: 80 });
+      document.getElementById('reg-form-wrap').classList.add('hidden');
+      document.getElementById('reg-success-wrap').classList.remove('hidden');
+    }
+
+    function confirmSponsorship(e) {
+      e.preventDefault();
+      alert('Thank you! Sponsorship prospectus has been dispatched.');
+      closeSponsorModal();
+    }
+
+    // Initial render
+    renderSchedule();
+  </script>
+</body>
+</html>
