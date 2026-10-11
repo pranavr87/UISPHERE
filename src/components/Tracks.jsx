@@ -30,7 +30,7 @@ export default function Tracks({ onOpenRegister }) {
             <Layers className="w-3.5 h-3.5" />
             <span>LEARNING VERTICALS</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black font-syne text-white tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-black font-sans text-white tracking-tight mb-4">
             Tracks & Workshops
           </h2>
           <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
@@ -55,7 +55,7 @@ export default function Tracks({ onOpenRegister }) {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold font-syne text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                <h3 className="text-xl font-bold font-sans text-white mb-2 group-hover:text-emerald-300 transition-colors">
                   {track.title}
                 </h3>
 
@@ -100,7 +100,7 @@ export default function Tracks({ onOpenRegister }) {
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold font-syne text-white mb-2">
+              <h3 className="text-xl font-bold font-sans text-white mb-2">
                 All-Access Pass
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed mb-6">

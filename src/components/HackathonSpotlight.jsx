@@ -25,7 +25,7 @@ export default function HackathonSpotlight({ onOpenRegister }) {
                 <span>24-HOUR HACK SPRINT // NON-STOP</span>
               </div>
 
-              <h2 className="text-4xl sm:text-6xl font-black font-syne text-white tracking-tight leading-tight mb-4">
+              <h2 className="text-4xl sm:text-6xl font-black font-sans text-white tracking-tight leading-tight mb-4">
                 CODE. SHIP. DISRUPT.<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-yellow-400 to-emerald-400">
                   ₹1,50,000+ CASH POOL
@@ -75,12 +75,12 @@ export default function HackathonSpotlight({ onOpenRegister }) {
                     <span className={`text-xs font-mono font-bold uppercase ${p.text}`}>
                       {p.rank}
                     </span>
-                    <div className="text-3xl font-black font-syne text-white mt-0.5">
+                    <div className="text-3xl font-black font-sans text-white mt-0.5">
                       {p.amount}
                     </div>
                     <p className="text-[11px] text-slate-400 font-mono mt-1">Cash Award + Google Cloud Credits + Swag Bag</p>
                   </div>
-                  <div className="w-12 h-12 rounded-xl bg-slate-800 border border-white/10 flex items-center justify-center font-bold font-syne text-lg text-white">
+                  <div className="w-12 h-12 rounded-xl bg-slate-800 border border-white/10 flex items-center justify-center font-bold font-sans text-lg text-white">
                     {p.badge}
                   </div>
                 </div>

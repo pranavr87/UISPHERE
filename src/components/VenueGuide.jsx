@@ -14,7 +14,7 @@ export default function VenueGuide() {
             <MapPin className="w-3.5 h-3.5" />
             <span>CAMPUS & LOGISTICS</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black font-syne text-white tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-black font-sans text-white tracking-tight mb-4">
             Host Venue & Travel Guide
           </h2>
           <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
@@ -30,7 +30,7 @@ export default function VenueGuide() {
             <div>
               <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-semibold">• HOST INSTITUTION •</span>
 
-              <h3 className="text-2xl sm:text-3xl font-black font-syne text-white mt-1 mb-2">
+              <h3 className="text-2xl sm:text-3xl font-black font-sans text-white mt-1 mb-2">
                 Siksha 'O' Anusandhan (SOA)
               </h3>
               <p className="text-xs sm:text-sm font-mono text-emerald-400 mb-4">
@@ -95,7 +95,7 @@ export default function VenueGuide() {
                 <Plane className="w-6 h-6 text-cyan-400" />
               </div>
               <div>
-                <h5 className="text-sm font-bold text-white font-syne">Biju Patnaik Airport (BBI)</h5>
+                <h5 className="text-sm font-bold text-white font-sans">Biju Patnaik Airport (BBI)</h5>
                 <p className="text-xs text-slate-400 font-mono mt-0.5">~ 7 km • Approx 15 mins via Cab / Auto</p>
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function VenueGuide() {
                 <Train className="w-6 h-6 text-emerald-400" />
               </div>
               <div>
-                <h5 className="text-sm font-bold text-white font-syne">Bhubaneswar Railway Station (BBS)</h5>
+                <h5 className="text-sm font-bold text-white font-sans">Bhubaneswar Railway Station (BBS)</h5>
                 <p className="text-xs text-slate-400 font-mono mt-0.5">~ 8.5 km • Approx 20 mins via Mo Bus</p>
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function VenueGuide() {
                 <Bus className="w-6 h-6 text-amber-400" />
               </div>
               <div>
-                <h5 className="text-sm font-bold text-white font-syne">Baramunda Inter-State Bus Stand</h5>
+                <h5 className="text-sm font-bold text-white font-sans">Baramunda Inter-State Bus Stand</h5>
                 <p className="text-xs text-slate-400 font-mono mt-0.5">~ 2 km • Approx 5 mins via local transit</p>
               </div>
             </div>

@@ -13,7 +13,7 @@ export default function SpeakersGrid() {
             <Users className="w-3.5 h-3.5" />
             <span>VISIONARIES & MENTORS</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black font-syne text-white tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-black font-sans text-white tracking-tight mb-4">
             Featured Keynotes & Leads
           </h2>
           <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
@@ -49,7 +49,7 @@ export default function SpeakersGrid() {
                 </div>
 
                 {/* Speaker Details */}
-                <h3 className="text-lg font-bold font-syne text-white group-hover:text-emerald-300 transition-colors">
+                <h3 className="text-lg font-bold font-sans text-white group-hover:text-emerald-300 transition-colors">
                   {speaker.name}
                 </h3>
                 <p className="text-xs text-emerald-400 font-mono font-medium mb-1">{speaker.role}</p>

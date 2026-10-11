@@ -84,7 +84,7 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
             </div>
 
             {/* Main Title - Clean, bold and never overflowing */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-syne tracking-tight text-white leading-[1.08] mb-6">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-sans tracking-tight text-white leading-[1.08] mb-6">
               Tekno Krraft <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
                 2026 Edition
@@ -175,7 +175,7 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-syne font-bold text-white text-sm">TEKNO KRAFT 2026</h4>
+                    <h4 className="font-sans font-bold text-white text-sm">TEKNO KRAFT 2026</h4>
                     <p className="text-[10px] font-mono text-slate-400">GDG ITER • VIP PROTOCOL</p>
                   </div>
                 </div>
@@ -206,10 +206,10 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
                       value={passName}
                       onChange={(e) => setPassName(e.target.value.toUpperCase())}
                       onBlur={() => setIsEditingName(false)}
-                      className="mt-1 w-full px-3 py-1.5 text-base font-black font-syne bg-slate-900 text-emerald-300 rounded-lg border border-emerald-500/50 focus:outline-none"
+                      className="mt-1 w-full px-3 py-1.5 text-base font-black font-sans bg-slate-900 text-emerald-300 rounded-lg border border-emerald-500/50 focus:outline-none"
                     />
                   ) : (
-                    <div className="text-2xl font-black font-syne text-white tracking-tight mt-0.5">
+                    <div className="text-2xl font-black font-sans text-white tracking-tight mt-0.5">
                       {passName || "ATTENDEE NAME"}
                     </div>
                   )}
@@ -263,28 +263,28 @@ export default function Hero({ onOpenRegister, onOpenTicketModal }) {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto font-mono">
             <div className="p-4 rounded-2xl bg-slate-900/90 border border-emerald-500/30 text-center">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-400 font-syne tracking-tight">
+              <div className="text-3xl sm:text-4xl font-black text-emerald-400 font-sans tracking-tight">
                 {padZero(timeLeft.days)}
               </div>
               <div className="text-[10px] uppercase text-slate-400 font-bold tracking-wider mt-1">Days Remaining</div>
             </div>
 
             <div className="p-4 rounded-2xl bg-slate-900/90 border border-violet-500/30 text-center">
-              <div className="text-3xl sm:text-4xl font-black text-violet-400 font-syne tracking-tight">
+              <div className="text-3xl sm:text-4xl font-black text-violet-400 font-sans tracking-tight">
                 {padZero(timeLeft.hours)}
               </div>
               <div className="text-[10px] uppercase text-slate-400 font-bold tracking-wider mt-1">Hours</div>
             </div>
 
             <div className="p-4 rounded-2xl bg-slate-900/90 border border-yellow-500/30 text-center">
-              <div className="text-3xl sm:text-4xl font-black text-yellow-400 font-syne tracking-tight">
+              <div className="text-3xl sm:text-4xl font-black text-yellow-400 font-sans tracking-tight">
                 {padZero(timeLeft.minutes)}
               </div>
               <div className="text-[10px] uppercase text-slate-400 font-bold tracking-wider mt-1">Minutes</div>
             </div>
 
             <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-cyan-500/30 text-center">
-              <div className="text-3xl sm:text-4xl font-black text-cyan-400 font-syne tracking-tight">
+              <div className="text-3xl sm:text-4xl font-black text-cyan-400 font-sans tracking-tight">
                 {padZero(timeLeft.seconds)}
               </div>
               <div className="text-[10px] uppercase text-slate-400 font-bold tracking-wider mt-1">Seconds</div>

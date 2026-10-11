@@ -15,7 +15,7 @@ export default function SponsorsSection({ onOpenSponsorModal }) {
             <Building2 className="w-3.5 h-3.5" />
             <span>POWERED BY GIANTS</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black font-syne text-white tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-black font-sans text-white tracking-tight mb-4">
             Industry Partners
           </h2>
           <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
@@ -33,7 +33,7 @@ export default function SponsorsSection({ onOpenSponsorModal }) {
               href={title.link}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 text-4xl sm:text-6xl font-black font-syne text-white hover:text-emerald-400 transition-colors mt-3 mb-2"
+              className="inline-flex items-center justify-center gap-2 text-4xl sm:text-6xl font-black font-sans text-white hover:text-emerald-400 transition-colors mt-3 mb-2"
             >
               <span>{title.name}</span>
               <ExternalLink className="w-6 h-6 text-emerald-400" />
@@ -58,7 +58,7 @@ export default function SponsorsSection({ onOpenSponsorModal }) {
               className="glass-card p-6 rounded-2xl border border-white/10 text-center flex flex-col justify-between"
             >
               <div>
-                <h4 className="text-xl font-bold font-syne text-white mb-1">{sp.name}</h4>
+                <h4 className="text-xl font-bold font-sans text-white mb-1">{sp.name}</h4>
                 <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider mb-3 border ${sp.tierColor}`}>
                   {sp.tier}
                 </span>
@@ -75,7 +75,7 @@ export default function SponsorsSection({ onOpenSponsorModal }) {
 
         {/* Become a Sponsor CTA */}
         <div className="max-w-2xl mx-auto glass-card p-8 rounded-3xl border border-white/10 text-center">
-          <h3 className="text-2xl font-bold font-syne text-white mb-2">Want to Sponsor Tekno Krraft 2026?</h3>
+          <h3 className="text-2xl font-bold font-sans text-white mb-2">Want to Sponsor Tekno Krraft 2026?</h3>
           <p className="text-xs sm:text-sm text-slate-300 mb-6 font-sans">
             Connect your brand with 1,500+ top engineering talent and student builders at ITER Campus.
           </p>

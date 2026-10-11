@@ -24,7 +24,7 @@ export default function Footer() {
                 </svg>
               </div>
               <div>
-                <span className="font-syne font-bold text-lg text-white">Tekno Krraft 2026</span>
+                <span className="font-sans font-bold text-lg text-white">Tekno Krraft 2026</span>
                 <p className="text-[10px] font-mono text-slate-400">GDG @ SOA, ITER Chapter</p>
               </div>
             </div>

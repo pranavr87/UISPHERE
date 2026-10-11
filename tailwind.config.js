@@ -19,10 +19,10 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Inter"', 'sans-serif'],
+        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['"Space Grotesk"', 'sans-serif'],
-        syne: ['"Syne"', 'sans-serif'],
+        display: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        syne: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       animation: {
         'marquee': 'marquee 25s linear infinite',

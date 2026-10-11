@@ -27,7 +27,7 @@ export default function Navbar({ onOpenRegister, soundEnabled, onToggleSound }) 
             </svg>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="font-syne font-black text-white text-base tracking-tight">TeknoKrraft</span>
+            <span className="font-sans font-bold text-white text-base tracking-tight">TeknoKrraft</span>
             <span className="font-mono text-[10px] font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/30">
               '26
             </span>

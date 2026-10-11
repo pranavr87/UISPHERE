@@ -30,7 +30,7 @@ export default function FaqSection() {
             <span>NEED CLARITY?</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-black font-syne text-white tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-black font-sans text-white tracking-tight mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">

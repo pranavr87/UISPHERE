@@ -66,7 +66,7 @@ export default function SchedulePlanner({ onOpenRegister }) {
             <span>3-DAY MISSION ROADMAP</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-black font-syne text-white tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-black font-sans text-white tracking-tight mb-4">
             Plan Your Fest Journey
           </h2>
           <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
@@ -161,7 +161,7 @@ export default function SchedulePlanner({ onOpenRegister }) {
                 </div>
               </div>
 
-              <h3 className="text-lg sm:text-xl font-bold font-syne text-white group-hover:text-emerald-300 transition-colors mb-2">
+              <h3 className="text-lg sm:text-xl font-bold font-sans text-white group-hover:text-emerald-300 transition-colors mb-2">
                 {session.title}
               </h3>
 
@@ -177,7 +177,7 @@ export default function SchedulePlanner({ onOpenRegister }) {
                     className="w-10 h-10 rounded-full object-cover border border-white/20"
                   />
                   <div>
-                    <div className="text-sm font-bold text-white font-syne">{session.speaker}</div>
+                    <div className="text-sm font-bold text-white font-sans">{session.speaker}</div>
                     <p className="text-xs text-slate-400">{session.speakerRole}</p>
                     <div className="flex items-center gap-1 text-[11px] font-mono text-rose-400 mt-0.5">
                       <MapPin className="w-3 h-3" />
@@ -234,7 +234,7 @@ export default function SchedulePlanner({ onOpenRegister }) {
               </span>
             </div>
 
-            <h3 className="text-2xl font-black font-syne text-white mb-3">
+            <h3 className="text-2xl font-black font-sans text-white mb-3">
               {selectedSession.title}
             </h3>
 
@@ -250,7 +250,7 @@ export default function SchedulePlanner({ onOpenRegister }) {
                 className="w-14 h-14 rounded-full object-cover border border-emerald-500/40"
               />
               <div>
-                <h4 className="text-base font-bold font-syne text-white">{selectedSession.speaker}</h4>
+                <h4 className="text-base font-bold font-sans text-white">{selectedSession.speaker}</h4>
                 <p className="text-xs text-emerald-400">{selectedSession.speakerRole}</p>
                 <p className="text-[11px] font-mono text-slate-400 mt-1">📍 {selectedSession.location}</p>
               </div>

@@ -39,7 +39,7 @@ export default function AboutFest({ onOpenRegister }) {
             <Users2 className="w-3.5 h-3.5" />
             <span>COMMUNITY-DRIVEN ECOSYSTEM</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black font-syne text-white tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-black font-sans text-white tracking-tight mb-4">
             About Tekno Krraft 2026
           </h2>
           <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
@@ -57,7 +57,7 @@ export default function AboutFest({ onOpenRegister }) {
               <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-white/10 flex items-center justify-center mb-5">
                 {p.icon}
               </div>
-              <h3 className="text-lg font-bold font-syne text-white mb-2">{p.title}</h3>
+              <h3 className="text-lg font-bold font-sans text-white mb-2">{p.title}</h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
                 {p.description}
               </p>
@@ -68,7 +68,7 @@ export default function AboutFest({ onOpenRegister }) {
         {/* Callout */}
         <div className="glass-card p-8 sm:p-10 rounded-3xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="text-2xl font-bold font-syne text-white mb-1">
+            <h3 className="text-2xl font-bold font-sans text-white mb-1">
               Ready to code, compete & ship?
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl font-sans">
