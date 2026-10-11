@@ -51,7 +51,7 @@ tekno-krraft-2026/
 
 ```bash
 # 1. Navigate to project directory
-cd "C:\Users\Pranav Raj\.gemini\antigravity\scratch\tekno-krraft-2026"
+cd tekno-krraft-2026
 
 # 2. Start Vite Development Server
 npm run dev
